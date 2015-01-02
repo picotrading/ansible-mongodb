@@ -1,0 +1,14 @@
+---
+
+galaxy_info:
+  author: Jiri Tyr
+  description: Role which installs and configures MongoDB
+  license: MIT
+  min_ansible_version: 1.7
+  platforms:
+    - name: EL
+      versions:
+        - 6
+  categories:
+    - system
+dependencies: []

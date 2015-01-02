@@ -1,0 +1,39 @@
+---
+
+# There is no systemd support for MongoDB yet
+- name: Test distribution
+  assert:
+    that: >
+      ansible_os_family == "RedHat" and
+      ansible_distribution_major_version | int == 6
+
+- name: Install MongoDB pacakges for RedHat
+  yum:
+    name: "{{ item }}"
+  with_items: mongodb_packages
+
+- name: Fix bug in the init.d script
+  lineinfile:
+    dest: /etc/init.d/{{ mongodb_service_name }}
+    line: PIDDIR=`dirname ${PIDFILEPATH:-{{ mongodb_processManagement_pidFilePath }}}`
+    regexp: ^PIDDIR=
+
+- name: Create MongoDB sysconfig file
+  template:
+    src: mongod.sysconfig.j2
+    dest: "{{ mongodb_sysconfig_file }}"
+  notify:
+    - Restart mongod service
+
+- name: Create main MongoDB config file
+  template:
+    src: mongod.conf.j2
+    dest: "{{ mongodb_config_file }}"
+  notify:
+    - Restart mongod service
+
+- name: Start MongoDB service
+  service:
+    name: "{{ mongodb_service_name }}"
+    enabled: yes
+    state: started
