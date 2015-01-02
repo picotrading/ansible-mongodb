@@ -28,12 +28,24 @@ Examples
     # This is needed to make the init.d script working
     mongodb_processManagement_fork: true
   roles:
+    - role: yumrepo
+      yumrepo_repos:
+        mongodb:
+          name: MongoDB repository
+          baseurl: http://downloads-distro.mongodb.org/repo/redhat/os/$basearch/
+          gpgcheck: 0
     - mongodb
 
 # The above example is using mongodb_config_simple config template which you can
 # modify like this:
 - hosts: myhost2
   roles:
+    - role: yumrepo
+      yumrepo_repos:
+        mongodb:
+          name: MongoDB repository
+          baseurl: http://downloads-distro.mongodb.org/repo/redhat/os/$basearch/
+          gpgcheck: 0
     - role: mongodb
       mongodb_net_bindIp: 127.0.0.1
       mongodb_net_wireObjectCheck: false
@@ -46,6 +58,12 @@ Examples
 # mongodb_config_mongos_server by assigning one of them to the mongodb_config:
 - hosts: myhost3
   roles:
+    - role: yumrepo
+      yumrepo_repos:
+        mongodb:
+          name: MongoDB repository
+          baseurl: http://downloads-distro.mongodb.org/repo/redhat/os/$basearch/
+          gpgcheck: 0
     - role: mongodb
       mongodb_config: "{{ mongodb_config_replica }}"
       # Set other parameters of this template:
@@ -54,9 +72,16 @@ Examples
 # Or you can create completely your own config template:
 - hosts: myhost4
   roles:
+    - role: yumrepo
+      yumrepo_repos:
+        mongodb:
+          name: MongoDB repository
+          baseurl: http://downloads-distro.mongodb.org/repo/redhat/os/$basearch/
+          gpgcheck: 0
     - role: mongodb
       mongodb_config:
         storage:
+          # This uses the default value defined in defaults/main.yaml
           dbPath: "{{ mongodb_storage_dbPath }}
           directoryPerDB: "{{ mongodb_storage_directoryPerDB }}
           journal:
@@ -64,6 +89,7 @@ Examples
         systemLog:
           destination: "{{ mongodb_systemLog_destination }}"
           path: "{{ mongodb_systemLog_path }}"
+          # This sets a custom value
           logAppend: true
           timeStampFormat: iso8601-utc
         processManagement:
@@ -432,6 +458,12 @@ mongodb_config_mongos_server:
 # Default MongoDB config
 mongodb_config: "{{ mongodb_config_simple }}"
 ```
+
+
+Dependencies
+------------
+
+* [`yumrepo`](https://github.com/picotrading/ansible-yumrepo) role (optional)
 
 
 License
