@@ -375,6 +375,7 @@ mongodb_config_simple:
     timeStampFormat: "{{ mongodb_systemLog_timeStampFormat }}"
   processManagement:
     fork: "{{ mongodb_processManagement_fork }}"
+    pidFilePath: "{{ mongodb_processManagement_pidFilePath }}"
   net:
     bindIp: "{{ mongodb_net_bindIp }}"
     port: "{{ mongodb_net_port }}"
@@ -401,6 +402,7 @@ mongodb_config_replica:
     replSetName: "{{ mongodb_replication_replSetName }}"
   processManagement:
     fork: "{{ mongodb_processManagement_fork }}"
+    pidFilePath: "{{ mongodb_processManagement_pidFilePath }}"
   net:
     bindIp: "{{ mongodb_net_bindIp }}"
     port: "{{ mongodb_net_port }}"
@@ -423,6 +425,7 @@ mongodb_config_mongos:
     timeStampFormat: "{{ mongodb_systemLog_timeStampFormat }}"
   processManagement:
     fork: "{{ mongodb_processManagement_fork }}"
+    pidFilePath: "{{ mongodb_processManagement_pidFilePath }}"
   net:
     bindIp: "{{ mongodb_net_bindIp }}"
     port: "{{ mongodb_net_port }}"
@@ -445,6 +448,7 @@ mongodb_config_mongos_server:
     timeStampFormat: "{{ mongodb_systemLog_timeStampFormat }}"
   processManagement:
     fork: "{{ mongodb_processManagement_fork }}"
+    pidFilePath: "{{ mongodb_processManagement_pidFilePath }}"
   net:
     bindIp: "{{ mongodb_net_bindIp }}"
     port: "{{ mongodb_net_port }}"
