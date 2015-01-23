@@ -4,14 +4,9 @@ mongodb
 Ansible Role which installs MongoDB from RPM package and configures it with the
 YAML format of the config file.
 
-This role doesn't download the RPM package. In order to install it, it needs to
-be put into a repo (see
-[`yumrepo`](https://github.com/picotrading/ansible-yumrepo) role for RedHat-based
-distros). You can encapsulate this role to manage the installation of the RPM
-package automatically. The configuraton of the role is done in such way that it's
-not necessary to change the role for any kind of modification. All can be changed
-via parameters used by the role. That makes this role absolutely universal. See
-examples bellow.
+The configuraton of the role is done in such way that it's not necessary to
+change the role for any kind of modification. All can be changed via parameters
+used by the role. That makes this role absolutely universal. See examples bellow.
 
 Please report any issues or send PR.
 
@@ -28,24 +23,12 @@ Examples
     # This is needed to make the init.d script working
     mongodb_processManagement_fork: true
   roles:
-    - role: yumrepo
-      yumrepo_repos:
-        mongodb:
-          name: MongoDB repository
-          baseurl: http://downloads-distro.mongodb.org/repo/redhat/os/$basearch/
-          gpgcheck: 0
     - mongodb
 
 # The above example is using mongodb_config_simple config template which you can
 # modify like this:
 - hosts: myhost2
   roles:
-    - role: yumrepo
-      yumrepo_repos:
-        mongodb:
-          name: MongoDB repository
-          baseurl: http://downloads-distro.mongodb.org/repo/redhat/os/$basearch/
-          gpgcheck: 0
     - role: mongodb
       mongodb_net_bindIp: 127.0.0.1
       mongodb_net_wireObjectCheck: false
@@ -58,12 +41,6 @@ Examples
 # mongodb_config_mongos_server by assigning one of them to the mongodb_config:
 - hosts: myhost3
   roles:
-    - role: yumrepo
-      yumrepo_repos:
-        mongodb:
-          name: MongoDB repository
-          baseurl: http://downloads-distro.mongodb.org/repo/redhat/os/$basearch/
-          gpgcheck: 0
     - role: mongodb
       mongodb_config: "{{ mongodb_config_replica }}"
       # Set other parameters of this template:
@@ -72,12 +49,6 @@ Examples
 # Or you can create completely your own config template:
 - hosts: myhost4
   roles:
-    - role: yumrepo
-      yumrepo_repos:
-        mongodb:
-          name: MongoDB repository
-          baseurl: http://downloads-distro.mongodb.org/repo/redhat/os/$basearch/
-          gpgcheck: 0
     - role: mongodb
       mongodb_config:
         storage:
@@ -467,7 +438,7 @@ mongodb_config: "{{ mongodb_config_simple }}"
 Dependencies
 ------------
 
-* [`yumrepo`](https://github.com/picotrading/ansible-yumrepo) role (optional)
+* [`yumrepo`](https://github.com/picotrading/ansible-yumrepo) role
 
 
 License

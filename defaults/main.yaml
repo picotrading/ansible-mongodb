@@ -1,5 +1,7 @@
 ---
 
+# Default YUM repo
+mongodb_yum_repo_url: http://downloads-distro.mongodb.org/repo/redhat/os/$basearch/
 
 # Default list of RPM packages to install
 mongodb_packages:
