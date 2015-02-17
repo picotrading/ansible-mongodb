@@ -4,6 +4,6 @@
 # Any changes will be automatically reverted.
 #
 
-{% from 'macros/yaml_encode_macro.j2' import yaml_encode with context -%}
+{% from 'templates/encoder/macros/yaml_encode_macro.j2' import yaml_encode with context -%}
 
 {{ yaml_encode(mongodb_config) }}
