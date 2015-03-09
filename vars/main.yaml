@@ -1,8 +1,2 @@
 ---
 
-# Default MongoDB YUM repo
-yumrepo_repos:
-  mongodb:
-    name: MongoDB repository
-    baseurl: "{{ mongodb_yum_repo_url }}"
-    gpgcheck: 0

@@ -12,4 +12,10 @@ galaxy_info:
   categories:
     - system
 dependencies:
-  - yumrepo
+  - role: common/yumrepo
+    yumrepo_repos:
+      mongodb:
+        name: MongoDB repository
+        baseurl: "{{ mongodb_yum_repo_url }}"
+        gpgcheck: 0
+  - common/mongodb
