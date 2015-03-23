@@ -11,6 +11,10 @@
   yum:
     name: "{{ item }}"
   with_items: mongodb_packages
+  notify:
+    - Restart mongod service
+  tags:
+    - mongodb_pkg
 
 - name: Fix bug in the init.d script
   lineinfile:
@@ -31,6 +35,8 @@
     dest: "{{ mongodb_config_file }}"
   notify:
     - Restart mongod service
+  tags:
+    - mongodb_config
 
 - name: Start MongoDB service
   service:
