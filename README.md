@@ -75,14 +75,14 @@ Examples
             enabled: true
 ```
 
-This role requires [Jinja2 Encoder
-Macros](https://github.com/picotrading/jinja2-encoder-macros) which must be
+This role requires [Config Encoder
+Macros](https://github.com/picotrading/config-encoder-macros) which must be
 placed into the same directory as the playbook:
 
 ```
 $ ls -1 *.yaml
 site.yaml
-$ git clone https://github.com/picotrading/jinja2-encoder-macros.git ./templates/encoder
+$ git clone https://github.com/picotrading/config-encoder-macros.git ./templates/encoder
 ```
 
 
@@ -451,7 +451,7 @@ Dependencies
 ------------
 
 * [`yumrepo`](https://github.com/picotrading/ansible-yumrepo) role
-* [Jinja2 Encoder Macros](https://github.com/picotrading/jinja2-encoder-macros)
+* [Config Encoder Macros](https://github.com/picotrading/config-encoder-macros)
 
 
 License
